@@ -2,12 +2,12 @@ const express= require('express');
 const products = require('../resources/files/productos');
 const router = express.Router();
 
-const productos = require('../resources/files/productos');
+const { v4: uuidv4 } = require('uuid')
 
 //Almacena los registros de forma estatica
 let usuarios = []
 
-let usuarios_registrados =[]
+let arreglo =[]
 
 
 router.get('/',(req,res)=>{
@@ -43,8 +43,37 @@ router.post('/login',(req, res)=>{
     }
 });  
 
+router.get('/asignar', (req, res) => {
+    res.render('asignar');
+});
+
+
+router.post('/save', (req, res) => {
+    arreglo.push({ ...req.body, id: uuidv4() });
+    res.redirect('/compra')
+});
+
+router.get('/entregado/:id', (req, res) => {
+    const { id } = req.params;
+    const idx = arreglo.findIndex(element => element.id == id);
+    arreglo.splice(idx, 1);
+    res.redirect('/')
+})
+
+router.get('/editar/:id', (req, res) => {
+    const { id } = req.params;
+     const idx = arreglo.findIndex(element => element.id == id);
+    arreglo.splice(idx, 1);
+    res.render('editar')
+})
+
+router.post('/editar', (req, res) => {
+  arreglo.push({ ...req.body, id: uuidv4() });
+    res.redirect('/')
+})
+
 router.get('/compra',(req, res)=>{
-    res.render('compra');
+    res.render('compra',{arreglo});
 });
 
 router.post('/compra',(req, res)=>{
