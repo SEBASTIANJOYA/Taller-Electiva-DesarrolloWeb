@@ -22,7 +22,7 @@
                     <p style="text-align: center;" class="mb-0">Informacion del producto.</p>
                 </div>
             <div class="card-body">
-                <form id="frm" onsubmit="return validate()">
+                <form method="post" id="frm" onsubmit="return validate()">
                     <div class="form-group row m-3">    
                         <div class="form-group col-sm-6">
                             <label for="name">Id Producto</label>
@@ -54,7 +54,7 @@
 
                         <div class="form-group col-sm-6">
                             <label for="date">Fecha de Vencimiento</label>
-                            <input type="text" id="dateBirthday" class="form-control" required></input>
+                            <input type="text" id="date" class="form-control" required></input>
                         </div>
 
                     </div>
@@ -74,7 +74,7 @@
 
                         <div class="form-group col-sm-4">
                             <label for="tipopago">Tipo de Producto</label>
-                            <select id="optionproductos" class="form-select">
+                            <select id="option" class="form-select">
             
                                 <option>PRODUCTO</option>
             
